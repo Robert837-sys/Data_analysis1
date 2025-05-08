@@ -1,0 +1,24 @@
+# Steps to Resolve VS Code Permission Issues
+
+1. **Run VS Code as Administrator**:
+   - Close VS Code if it is currently open.
+   - Right-click on the VS Code icon and select "Run as administrator."
+   - This grants VS Code elevated permissions, which may resolve access issues.
+
+2. **Check VS Code Settings**:
+   - Open VS Code and go to "File" > "Preferences" > "Settings."
+   - Search for "files.autoSave" and ensure it is set to "onWindowChange" or "afterDelay" to avoid file locking issues.
+
+3. **Check File Permissions Again**:
+   - Navigate to the directory containing the CSV files (C:\Users\Administrator\Desktop\DataNerd\csv_files).
+   - Right-click on each CSV file and select "Properties."
+   - Go to the "Security" tab and ensure that the user running VS Code has "Read" permissions.
+
+4. **Check PostgreSQL Service Permissions**:
+   - Ensure that the PostgreSQL service is running under a user account that has access to the CSV files.
+   - You can check this in the "Services" application on Windows.
+
+5. **Test the Commands Again**:
+   - After making the necessary changes, try running the `COPY` commands again in pgAdmin or the PSQL Tool.
+
+Follow these steps to resolve any potential permission issues related to VS Code and ensure that it can access the necessary files.

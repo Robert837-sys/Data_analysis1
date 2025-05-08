@@ -1,0 +1,66 @@
+CASTING IN PostgreSQL
+this refers to converting one data type to another in sql. It can be done by using :: in PostgreSQL.
+example SELECT '2023-02-19'::DATE; this will convert the string to date data type.
+
+AT TIME ZONE
+converts timestamps between different time zones.
+It can also be used on timestamps with or without time zone information.
+
+
+TIMESTAMPS WITH TIME ZONE
+A specific date and time with time zone information. It is used to store and compare dates and times across different time zones.Similar to TIMESTAMPS but it includes time zone information. It is used to store and compare dates and times across different time zones.
+Format:2024-02-06 15:04:05+00:00
+
+TIMESTAMPS
+A specific date and time without time zone information. It is used to store and compare dates and times. Format: YYYY-MM-DD HH:MM:SS.000000
+
+job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'EST' AS date_time. This will convert the date_time from UTC to EST.
+
+EXTRACT
+get field(e.g.,year,month,day) from a date/time value.
+syntax: EXTRACT(MONTH FROM column_name) AS column_month
+
+CASE EXPRESSION
+it's mostly used in a SELECT statement to perform conditional operations.
+A case expression in sql is a way to apply logic within your sql queries.
+CASE begins the expression
+WHEN is used to specify the condition to look at.
+THEN is used to specify the value to return if the condition is met.
+ELSE is used to specify the value to return if the condition is not met.
+END concludes the CASE expression.
+example : SELECT CASE WHEN salary > 50000 THEN 'High' ELSE 'Low' END AS salary.
+SELECT
+    job_title_short,
+    job_location,
+    CASE 
+        WHEN job_location='Anywhere' THEN 'Remote'
+        WHEN job_location='New York,NY' THEN 'Local'
+        ELSE 'Onsite'
+    END AS location_category
+FROM   job_postings_fact
+
+The GROUP BY statement in SQL is used to organize data into groups based on one or more columns. It's often combined with aggregate functions (like SUM, COUNT, AVG, MAX, MIN) to perform calculations on each group.
+
+SUBQUERIES AND CTEs 
+Subqueries and common Table Expressions (CTEs) are used to perform complex queries. 
+~Helps break down the query into smaller, more manageable parts.
+~When to use one over the other?
+    ~Subqueries are for similar queries.
+    ~CTEs are for complex queries.
+example
+SELECT *
+FROM ( -- Subquery starts here
+    SELECT *
+FROM job_postings_fact
+WHERE EXTRACT(MONTH FROM job_posted_date) = 1
+) AS january_jobs;
+
+
+Common Table Expressions (CTEs) are temporary result sets that are defined within a SELECT, INSERT, UPDATE.
+Defined with a WITH keyword.
+
+WITH january_jobs AS (SELECT *
+FROM job_postings_fact
+WHERE EXTRACT(MONTH FROM job_posted_date) = 1)
+SELECT *
+FROM january_jobs;

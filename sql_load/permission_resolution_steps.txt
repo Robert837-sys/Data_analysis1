@@ -1,0 +1,25 @@
+# Steps to Resolve Permission Denial Error
+
+1. **Check File Permissions**:
+   - Navigate to the directory containing the CSV files (C:\Users\Administrator\Desktop\DataNerd\csv_files).
+   - Right-click on each CSV file (e.g., company_dim.csv, skills_dim.csv) and select "Properties."
+   - Go to the "Security" tab and ensure that the user running the PostgreSQL server has "Read" permissions.
+
+2. **Modify Permissions** (if necessary):
+   - Click "Edit" in the "Security" tab.
+   - Select the user or group that needs permissions and check the "Read" box.
+   - Click "Apply" and then "OK" to save changes.
+
+3. **Verify File Paths**:
+   - Ensure that the file paths in your SQL commands are correct. They should match the actual location of the CSV files.
+
+4. **Execute Commands in pgAdmin**:
+   - Open pgAdmin and connect to your database.
+   - In the Object Explorer, navigate to your database (sql_course).
+   - Right-click on the database and select "PSQL Tool."
+   - Paste the `COPY` commands with the correct file paths and execute them.
+
+5. **Test the Commands**:
+   - After making the necessary changes, try running the `COPY` commands again to see if the issue is resolved.
+
+Follow these steps to resolve the permission denial error and successfully load your CSV data into the database.
