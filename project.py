@@ -11,5 +11,15 @@ df = pd.read_excel('sales.xlsx',engine='openpyxl', nrows=10)
 # df['Month']=df['Actual Date'].dt.month
 
 # to extract month and year at the same time use the following formulae
-# df['Month_ear']=df['Actual Date'].dt.strftime()
+# df['Month_ear']=df['Actual Date'].dt.strftime('%b %y')
+
+# formulae to extract day
+# df['Day']=df['Actual Date'].dt.day
+
+# formulae to extract dayName
+# df['Day_Name']=df['Actual Date'].dt.strftime('%A')
+
+# to extract year
+# df['Year']=df['Actual Date'].dt.year
+
 print(df.head())
